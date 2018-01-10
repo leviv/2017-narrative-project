@@ -51,10 +51,7 @@ function onPlayerStateChange(event) {
 function stopVideo() {
     player.stopVideo();
 }
-/*
-window.onbeforeunload = function() {
-	YT.PlayerState = PAUSED;
-}*/
+
 
 // Create array with data
 var hasBeenClicked = false;
@@ -87,10 +84,10 @@ function onPlayerStateChange(event) {
     }
     
     // update the viewing states
-    if (event.data == YT.PlayerState.PAUSED || ) {
-        videoState = 'Played';
+    if (event.data == YT.PlayerState.PAUSED ) {
+        videoState = 'Paused';
     } else if (event.data == YT.PlayerState.ENDED){
-        videoState = 'Finished';
+        videoState = 'Ended';
     }
     
     // Data to convert to csv
@@ -106,7 +103,7 @@ function onPlayerStateChange(event) {
     ];
     
     // pass variable to other method to convert to csv friendly string
-    result = convertArrayOfObjectsToCSV({
+    result += convertArrayOfObjectsToCSV({
         data: videoData
     });
 }

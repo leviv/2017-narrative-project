@@ -21,19 +21,7 @@
             </div>
         </header>
 
-        <figure class="featured-image">
-            <div id="player"></div>
-            <script type="text/javascript" src="https://www.googleapis.com/youtube/v3/videos?id=itemId&key=apiKey&fields=items(snippet(title))&part=snippet"></script>
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-            <script type="text/javascript">
-                var video_id = "<?php echo $video_id; ?>";
-                var video_name = "<?php echo $video_name; ?>";
-            </script>
-            <script type="text/javascript" src="../includes/main.js"></script>
-
-            <a href='#' onclick='downloadCSV({ filename: "video-data.csv" });'>Download CSV</a>
-        </figure>
-
+        
         <? echo $article;?>
 
         <?php
@@ -43,6 +31,16 @@
         // include('comments.php');
 
         ?>
+            <div id="player"></div>
+            <script type="text/javascript" src="https://www.googleapis.com/youtube/v3/videos?id=itemId&key=apiKey&fields=items(snippet(title))&part=snippet"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+            <script type="text/javascript">
+                var video_id = "<?php echo $video_id; ?>";
+                var video_name = "<?php echo $video_name; ?>";
+            </script>
+            <script type="text/javascript" src="../includes/main.js"></script>
+
+            <!--<a href='#' onclick='downloadCSV({ filename: "video-data.csv" });'>Download CSV</a> -->
 
     </article>
 </main>

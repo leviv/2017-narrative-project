@@ -1,3 +1,4 @@
+/*
 $(document).ready(function() {
 
     var closedElements = ['footnote', 'category', 'author'];
@@ -153,7 +154,6 @@ $(document).ready(function() {
         e.removeClass('accordion--closed');
         e.addClass('accordion--open');
     }
-
     function log(action, label, comment) {
         var xhr = new XMLHttpRequest();
 
@@ -170,7 +170,6 @@ $(document).ready(function() {
         };
         xhr.send(encodeURI('log=true&identifier='+studyType+'&user_id='+userID+'&action='+action+'&comment='+comment+'&label='+label+'&url='+window.location.href));
     }
-
     // label == what it is
     function logClick(label, comment) {
         var action = 'click';
@@ -286,3 +285,4 @@ $(document).ready(function() {
     }
 
 });
+/*

@@ -39,7 +39,7 @@ class Log
 			  //open file with append
 				$logFile = fopen($log, 'a') or die("A problem has occurred. Please contact administrator.");
 
-				$logText = $this->url."|".$this->identifier . "|" .$this->user_id . "|" . $this->ipAddress . "|" . $this->currTime . "|" . $this->action . "|" . $this->label . "|" . $this->comment . "\n";
+				$logText = /*$this->url."|".$this->identifier . "|" .$this->user_id . "|" . $this->ipAddress . "|" . $this->currTime . "|" .*/ $this->action . /*"|" . $this->label . "|" . $this->comment .*/ "\n";
 
 				//write to file
 				fwrite($logFile, $logText);

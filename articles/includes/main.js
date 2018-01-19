@@ -8,15 +8,29 @@
     // 3. This function creates an <iframe> (and YouTube player)
     //    after the API code downloads.
     var player;
-    var youtubeVideoID = video_id;
-    var youtubeVideoName = video_name;
+    var rand = Math.floor((Math.random() * 2));
+    var youtubeVideoID = vids[rand];
+    var youtubeVideoName = vids[rand + 2];
+    var youtubeVideoID2 = vids[(rand - 1) * -1];
+    var youtubeVideoName2 = vids[(rand - 1) * +1];
 
     // initiailize player events 
     function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
+        player = new YT.Player('player1', {
             height: '320',
             width: '100%',
             videoId: youtubeVideoID,
+            playerVars: {
+                'rel': 0
+            },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        }), player = new YT.Player('player2', {
+            height: '320',
+            width: '100%',
+            videoId: youtubeVideoID2,
             playerVars: {
                 'rel': 0
             },
@@ -122,6 +136,7 @@
         var videoData = [
             {
                 Date: videoDate,
+                FirstVideoShown: youtubeVideoName,
                 VideoPlayed: hasBeenClicked,
                 TimeViewed: timeWatched,
                 VideoTitle: youtubeVideoName
@@ -159,10 +174,9 @@
         columnDelimiter = args.columnDelimiter || ',';
         lineDelimiter = args.lineDelimiter || '\n';
 
-
-            // add the labels to the top of the csv
-            returnString += keys.join(columnDelimiter);
-            returnString += lineDelimiter;
+        // add the labels to the top of the csv
+//        returnString += keys.join(columnDelimiter);
+//        returnString += lineDelimiter;
 
         // Loop through all of the elements
         data.forEach(function (item) {
@@ -185,37 +199,7 @@
 
         return returnString;
     }
-    /*
-    function downloadCSV(args) {
 
-        var data, filename, link;
-
-        var csv = result;
-
-        // If payer has not been clicked, send in dummy data
-        if (csv.length < 2) {
-            csv = "Date,VideoPlayed,TimeViewed,VideoTitle \n " + new Date() + ",false,0,Video 1";
-        }
-
-        // Do not create document if the array of data was empty
-        if (csv == null) {return}
-
-        // name the csv file depending on what it's named in the onclick function
-        filename = args.filename || 'export.csv';
-
-        // Add the metadata to the beginning of the csv
-        if (!csv.match(/^data:text\/csv/i)) {
-            csv = 'data:text/csv;charset=utf-8,' + csv;
-        }
-        data = encodeURI(csv);
-
-        // attach it to the a tag
-        link = document.createElement('a');
-        link.setAttribute('href', data);
-        link.setAttribute('download', filename);
-        link.click();
-    }
-    */
 
     function log(action) {
         var xhr = new XMLHttpRequest();
@@ -231,5 +215,5 @@
                 alert('Request failed.  Returned status of ' + xhr.status);
             }
         };
-        xhr.send(encodeURI('log=true&identifier='+studyType+'&user_id='+userID+'&action='+action+window.location.href));
+        xhr.send(encodeURI('log=true&identifier='+studyType+'&user_id='+userID+'&action='+action));
     }

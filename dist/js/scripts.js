@@ -183,7 +183,7 @@ $(document).ready(function() {
     }
 
     // capture page load
-    log('Page View', pageTitle, 'Loaded');
+    //log('Page View', pageTitle, 'Loaded');
 
 
     /////////////////

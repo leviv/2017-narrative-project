@@ -21,24 +21,30 @@
             </div>
         </header>
 
+        <figure class="featured-image">
+            <img src="<?php echo($featured_img) ?>" alt="">
+        </figure>
         
-        <? echo $article;?>
+        <?php echo $article; ?>
 
-        <?php
-
-            echo $_COOKIE["csv"];
-    
-        // include('comments.php');
-
-        ?>
-            <div id="player"></div>
+        <figure id="videos">
+           <h4>Here are some personal experiences from some of our readers</h4>
+           <hr>
+            <div id="player1"></div>
+            <div id="player2"></div>
             <script type="text/javascript" src="https://www.googleapis.com/youtube/v3/videos?id=itemId&key=apiKey&fields=items(snippet(title))&part=snippet"></script>
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
             <script type="text/javascript">
-                var video_id = "<?php echo $video_id; ?>";
-                var video_name = "<?php echo $video_name; ?>";
+                var vids = ["<?php echo $video_id; ?>", "<?php echo $video2_id; ?>", "<?php echo $video_name; ?>", "<?php echo $video2_name; ?>"];
             </script>
             <script type="text/javascript" src="../includes/main.js"></script>
+        </figure>
+            
+        <?php
+
+        include('comments.php');
+
+        ?>
 
             <!--<a href='#' onclick='downloadCSV({ filename: "video-data.csv" });'>Download CSV</a> -->
 

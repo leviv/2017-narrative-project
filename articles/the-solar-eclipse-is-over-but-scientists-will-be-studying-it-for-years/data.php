@@ -5,6 +5,12 @@ $author = 'Jim Phipps';
 $pubdate = 'Oct. 23, 2017';
 
 $featured_img = '../../dist/img/eclipse.jpg';
+$video_id = 'jMggcdGtxCg';
+$video_name = 'Video 1';
+
+$video2_id = 'uttHkCH3C5Y';
+$video2_name = 'Video 2';
+
 $featured_img_caption = '';
 $article = '<p>The scientists who studied the eclipse will continue to pore over the data gathered and publish scientific studies for years.</p>
 <p>During the eclipse, one of the most important observations was of the sun\'s corona, the sun\'s thin, outer atmosphere that is only visible during total eclipses. The corona is so dim that it is usually totally overwhelmed by the light from the sun, Space.com said, but during the total solar eclipse, that light was conveniently blocked. That allowed astronomers to study the shape, structure and extent of the sun\'s corona.</p>

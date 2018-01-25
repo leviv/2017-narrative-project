@@ -27,15 +27,15 @@
         
         <?php echo $article; ?>
 
-        <figure id="videos">
-            <h4><b>Your Stories</b>: <i>News Beat</i> readers share their personal experiences with <?php echo($article_topic) ?></h4>
-           <hr>
-            <div id="player1"></div>
-            <div id="player2"></div>
-            
-            
-        </figure>
-            
+        <?php if($identifier !== 'control') { ?>
+            <figure id="videos">
+                <h4><b>Your Stories</b>: <i>News Beat</i> readers share their personal experiences with <?php echo($article_topic) ?></h4>
+               <hr>
+                <div id="player1"></div>
+                <div id="player2"></div> 
+
+            </figure>
+        <?php } ?>
         <?php
 
         include('comments.php');

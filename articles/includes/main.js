@@ -96,40 +96,52 @@
 
     // The parent function for what will happen onStateChange
     // This includeds video being paused, ending or played
-    function stateChange(event, videoClicked, startTime, endTime, videoState, totalViewedTime, timeWatched) {
-        
-        // The video has now been played
-        videoClicked = true;
+    // If the player changes state
+    function onPlayerStateChange(event) {
+
+        videoOneClicked = true;
         videoDate = new Date();
 
         // If the video is still playing as has not finished
-        // Set the videoState and ensure the timer elements running
-        if (event.data === YT.PlayerState.PLAYING && !done) {
-            startTime = new Date().getTime(); // milliseconds
-            endTime = startTime;
-            videoState = 'Played';
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+            start_time = new Date().getTime(); // milliseconds
+            end_time = start_time;
+            videoState1 = 'Played';
         }
 
-        // If the video has puased or ended stop the timer 
-        if (event.data == YT.PlayerState.PAUSED || YT.PlayerState.ENDED) {
-            endTime = new Date().getTime(); // milliseconds
-            totalViewedTime += endTime - startTime; // milliseconds
+        // If the video has puased or ended
+        if (event.data == YT.PlayerState.PAUSED || event.data ==  YT.PlayerState.ENDED) {
+            videoState1 = 'Stopped';
+            end_time = new Date().getTime(); // milliseconds
+            total_viewed_time += end_time - start_time; // milliseconds
 
             // convert from milleseconds to seconds 
-            timeWatched = (totalViewedTime / 1000) - 0.25;
+            videoOneTimeWatched = (total_viewed_time / 1000) - 0.25;
         }
 
-        // update the viewing states in case of pause or end
-        if (event.data == YT.PlayerState.PAUSED ) {
-            videoState = 'Paused';
-        } else if (event.data == YT.PlayerState.ENDED){
-            videoState = 'Ended';
-        }
     }
+    function onPlayerStateChange1(event) {
 
-    // Run the stateChange function for the first player, using the player1 variables
-    function onPlayerStateChange(event) {
-        stateChange(event, videoOneClicked, start_time, end_time, videoState1, total_viewed_time, videoOneTimeWatched);
+        videoTwoClicked = true;
+        videoDate = new Date();
+
+        // If the video is still playing as has not finished
+        if (event.data === YT.PlayerState.PLAYING && !done) {
+            start_time1 = new Date().getTime(); // milliseconds
+            end_time1 = start_time1;
+            videoState2 = 'Played';
+        }
+
+        // If the video has puased or ended
+        if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+            videoState1 = 'Stopped';
+            end_time1 = new Date().getTime(); // milliseconds
+            total_viewed_time1 += end_time1 - start_time1; // milliseconds
+
+            // convert from milleseconds to seconds 
+            videoTwoTimeWatched = (total_viewed_time1 / 1000) - 0.25;
+        }
+
     }
 
     // Run the stateChange function for the second player, using the player2 variables

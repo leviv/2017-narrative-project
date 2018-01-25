@@ -6,10 +6,10 @@ $pubdate = 'Oct. 23, 2017';
 
 $featured_img = '../../dist/img/eclipse.jpg';
 $video_id = 'jMggcdGtxCg';
-$video_name = 'Video 1';
+$video_name = 'Reader Perspective: Marijuana - Jeff';
 
 $video2_id = 'uttHkCH3C5Y';
-$video2_name = 'Video 2';
+$video2_name = 'Reader Perspective: Marijuana - Anne';
 
 $featured_img_caption = '';
 $article = '<p>The scientists who studied the eclipse will continue to pore over the data gathered and publish scientific studies for years.</p>

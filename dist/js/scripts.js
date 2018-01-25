@@ -189,15 +189,20 @@ $(document).ready(function() {
     /////////////////
     /// Comments ///
     ////////////////
+    
+    var commenter_name = "-";
+    var new_comment = "-";
+    
+    function returnComment() {
+        return commenter_name + "," + new_comment;
+    }
 
     $("#submit-comment").click(function(event) {
-      var commenter_name = $("#commenter-name").val();
-      var new_comment = $("#commenter-comment").val();
-      var url = pageTitle;
-      var label = userID;
+        commenter_name = $("#commenter-name").val();
+        new_comment = $("#commenter-comment").val();
 
       if (commenter_name.length > 0 && new_comment.length > 0 ) {
-        submitComment(commenter_name, new_comment, label);
+        submitComment();
         // send to google
         ga('send', 'event','Comments', 'Add Comment', label);
 
@@ -215,16 +220,16 @@ $(document).ready(function() {
     });
 
 
-    function submitComment(name, comment, identifier, url) {
+    function submitComment() {
       $(".new-comment").replaceWith('<div class="alert alert-success">Thanks for your comment!</div>');
 
-      log('Comment', 'Add Comment', name+ ': '+comment);
+      //log('Comment', 'Add Comment', name+ ': '+comment);
     }
 
     function submitCommentError() {
       $('.alert-error').remove();
       $(".new-comment").append("<div class='alert alert-error'>* Please enter your name and a comment.</div>");
-      log('Comment', 'Add Comment', 'Add Comment Error');
+      //log('Comment', 'Add Comment', 'Add Comment Error');
     }
 
 

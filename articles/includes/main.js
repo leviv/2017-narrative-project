@@ -8,14 +8,23 @@
     // 3. This function creates an <iframe> (and YouTube player)
     //    after the API code downloads.
     var player;
+
+    // Randomize which video is played first
+    // using an array of [id1,id2,name1,name2]
+    // Start by randomly picking either 0 or 1
     var rand = Math.floor((Math.random() * 2));
+    // Use that random number to determine the name and id of the
+    // Respective videos 
     var youtubeVideoID = vids[rand];
     var youtubeVideoName = vids[rand + 2];
     var youtubeVideoID2 = vids[(rand - 1) * -1];
-    var youtubeVideoName2 = vids[(rand - 1) * +1];
+    var youtubeVideoName2 = vids[(rand - 1) * -1 + 2];
 
     // initiailize player events 
     function onYouTubeIframeAPIReady() {
+        // Initalize the first player
+        // In a div with the id of 'player1'
+        // calls the onPlayerStateChange function
         player = new YT.Player('player1', {
             height: '320',
             width: '100%',
@@ -27,7 +36,11 @@
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
             }
-        }), player = new YT.Player('player2', {
+        }), 
+        // Construct the second player
+        // In a div with the id of 'player2'
+        // calls the onPlayerStateChange1 function
+            player = new YT.Player('player2', {
             height: '320',
             width: '100%',
             videoId: youtubeVideoID2,
@@ -36,7 +49,7 @@
             },
             events: {
                 'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
+                'onStateChange': onPlayerStateChange1
             }
         });
 
@@ -44,6 +57,7 @@
 
     //initialize timer elements to 0
     var total_viewed_time = 0, start_time = 0, end_time = 0;
+    var total_viewed_time1 = 0, start_time1 = 0, end_time1 = 0;
 
     // 4. The API will call this function when the video player is ready.
     function onPlayerReady(event) {
@@ -67,79 +81,134 @@
     }
 
 
-    // Create array with data
-    var hasBeenClicked = false;
-    var videoState = 'Not Played';
-    var timeWatched = 0;
+    // initialize all of the variables needed for the log
+    // Seperate variables for the two players
+    var videoOneClicked = false;
+    var videoTwoClicked = false;
+    var videoState1 = "";
+    var videoState2 = "";
+    var videoOneTimeWatched = 0;
+    var videoTwoTimeWatched = 0;
     var videoDate = new Date();
-    var result = '';
+    var result = "";
+    var commenter_name = "-";
+    var new_comment = "-";
 
-    // If the player changes state
-    function onPlayerStateChange(event) {
-
-        hasBeenClicked = true;
+    // The parent function for what will happen onStateChange
+    // This includeds video being paused, ending or played
+    function stateChange(event, videoClicked, startTime, endTime, videoState, totalViewedTime, timeWatched) {
+        
+        // The video has now been played
+        videoClicked = true;
         videoDate = new Date();
 
         // If the video is still playing as has not finished
+        // Set the videoState and ensure the timer elements running
         if (event.data === YT.PlayerState.PLAYING && !done) {
-            start_time = new Date().getTime(); // milliseconds
-            end_time = start_time;
+            startTime = new Date().getTime(); // milliseconds
+            endTime = startTime;
             videoState = 'Played';
         }
 
-        // If the video has puased or ended
+        // If the video has puased or ended stop the timer 
         if (event.data == YT.PlayerState.PAUSED || YT.PlayerState.ENDED) {
-            end_time = new Date().getTime(); // milliseconds
-            total_viewed_time += end_time - start_time; // milliseconds
+            endTime = new Date().getTime(); // milliseconds
+            totalViewedTime += endTime - startTime; // milliseconds
 
             // convert from milleseconds to seconds 
-            timeWatched = (total_viewed_time / 1000) - 0.25;
-            //alert(videoDate + " " + timeWatched + " " + youtubeVideoName + result);
+            timeWatched = (totalViewedTime / 1000) - 0.25;
         }
 
-        // update the viewing states
+        // update the viewing states in case of pause or end
         if (event.data == YT.PlayerState.PAUSED ) {
             videoState = 'Paused';
         } else if (event.data == YT.PlayerState.ENDED){
             videoState = 'Ended';
         }
-
-        // Data to convert to csv
-        var videoData = [
-            {
-                Date: videoDate,
-                VideoPlayed: hasBeenClicked,
-                VideoState: videoState,
-                TimeViewed: timeWatched,
-                VideoTitle: youtubeVideoName
-            }
-
-        ];
-
-        // pass variable to other method to convert to csv friendly string
-        result = convertArrayOfObjectsToCSV({
-            data: videoData
-        });
-
-
     }
 
-    window.onbeforeunload = function(){
+    // Run the stateChange function for the first player, using the player1 variables
+    function onPlayerStateChange(event) {
+        stateChange(event, videoOneClicked, start_time, end_time, videoState1, total_viewed_time, videoOneTimeWatched);
+    }
 
-        if (videoState == 'Played') {
+    // Run the stateChange function for the second player, using the player2 variables
+    function onPlayerStateChange1(event) {
+        stateChange(event, videoTwoClicked, start_time1, end_time1, videoState2, total_viewed_time1, videoTwoTimeWatched);
+    }
+
+
+    // The code for what happens when you click submit on the comment button
+    $("#submit-comment").click(function(event) {
+        
+        // Get the variables from user inputr
+        var name = $("#commenter-name").val();
+        var comment = $("#commenter-comment").val();
+
+        // If the name and comment have been entered then display a success message
+        if (name.length > 0 && comment.length > 0 ) {
+            submitComment(name, comment);
+            // send to google
+            //ga('send', 'event','Comments', 'Add Comment', label);
+        } else {
+            submitCommentError();
+            // var commenter_position = ".support";
+            // send to google
+            //ga('send','event','Comments', 'Add Comment Error', label);
+        }
+
+        // var commenter_position = ".support";
+        event.preventDefault();
+    });
+
+    // Display a success message on the page
+    // store the user input to log later
+    function submitComment(name, comment) {
+        $(".new-comment").replaceWith('<div class="alert alert-success">Thanks for your comment!</div>');
+        commenter_name = name;
+        new_comment = comment;
+    }
+    
+    // Display a success message on the page
+    function submitCommentError() {
+        $('.alert-error').remove();
+        $(".new-comment").append("<div class='alert alert-error'>* Please enter your name and a comment.</div>");
+        //log('Comment', 'Add Comment', 'Add Comment Error');
+    }
+
+    // Have this function runs right before the user navigates away from the page
+    window.onbeforeunload = function(){
+        
+        // Check to see if Player1 is still playing
+        if (videoState1 == 'Played') {
             end_time = new Date().getTime(); // milliseconds
             total_viewed_time += end_time - start_time; // milliseconds
 
             // convert from milleseconds to seconds 
-            timeWatched = (total_viewed_time / 1000) - 0.25;
+            videoOneTimeWatched = (total_viewed_time / 1000) - 0.25;
+        } 
+        
+        // Check to see if Player2 is still playing
+        if (videoState2 == 'Played') {
+            end_time1 = new Date().getTime(); // milliseconds
+            total_viewed_time1 += end_time1 - start_time1; // milliseconds
+
+            // convert from milleseconds to seconds 
+            videoTwoTimeWatched = (total_viewed_time1 / 1000) - 0.25;
         }
+        
+        // construct the data that needs to be logged
         var videoData = [
             {
                 Date: videoDate,
                 FirstVideoShown: youtubeVideoName,
-                VideoPlayed: hasBeenClicked,
-                TimeViewed: timeWatched,
-                VideoTitle: youtubeVideoName
+                SecondVideoShown: youtubeVideoName2,
+                VideoOnePlayed: videoOneClicked,
+                VideoTwoPlayed: videoTwoClicked,
+                VideoOneTimeWatched: videoOneTimeWatched,
+                VideoTwoTimeWatched: videoTwoTimeWatched,
+                CommenterName: commenter_name,
+                Comment: new_comment,
             }
 
         ];
@@ -149,9 +218,9 @@
             data: videoData
         });
 
+        // log the csv friendly string to the csv file
         log(result);
 
-        
     };
 
     // Pass an array and convert it to a string that can be interpretted as a csv
@@ -175,8 +244,8 @@
         lineDelimiter = args.lineDelimiter || '\n';
 
         // add the labels to the top of the csv
-//        returnString += keys.join(columnDelimiter);
-//        returnString += lineDelimiter;
+        // returnString += keys.join(columnDelimiter);
+        // returnString += lineDelimiter;
 
         // Loop through all of the elements
         data.forEach(function (item) {
@@ -200,10 +269,10 @@
         return returnString;
     }
 
-
+    // function to log the data to a csv file through PHP
     function log(action) {
         var xhr = new XMLHttpRequest();
-
+        // Send the POST request to the log php file, it will be processed there
         xhr.open('POST', '../../inc/class.log.php');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {

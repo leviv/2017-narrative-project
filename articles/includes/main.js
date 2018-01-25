@@ -134,7 +134,7 @@
 
         // If the video has puased or ended
         if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
-            videoState1 = 'Stopped';
+            videoState2 = 'Stopped';
             end_time1 = new Date().getTime(); // milliseconds
             total_viewed_time1 += end_time1 - start_time1; // milliseconds
 
@@ -143,12 +143,6 @@
         }
 
     }
-
-    // Run the stateChange function for the second player, using the player2 variables
-    function onPlayerStateChange1(event) {
-        stateChange(event, videoTwoClicked, start_time1, end_time1, videoState2, total_viewed_time1, videoTwoTimeWatched);
-    }
-
 
     // The code for what happens when you click submit on the comment button
     $("#submit-comment").click(function(event) {

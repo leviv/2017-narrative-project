@@ -42,7 +42,5 @@
 
         ?>
 
-            <!--<a href='#' onclick='downloadCSV({ filename: "video-data.csv" });'>Download CSV</a> -->
-
     </article>
 </main>

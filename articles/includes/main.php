@@ -28,7 +28,7 @@
         <?php echo $article; ?>
 
         <figure id="videos">
-           <h4>Here are some personal experiences from some of our readers</h4>
+            <h4><b>Your Stories</b>: <i>News Beat</i> readers share their personal experiences with <?php echo($article_topic) ?></h4>
            <hr>
             <div id="player1"></div>
             <div id="player2"></div>

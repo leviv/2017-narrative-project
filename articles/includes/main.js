@@ -272,7 +272,7 @@
     // function to log the data to a csv file through PHP
     function log(action) {
         var xhr = new XMLHttpRequest();
-        // Send the POST request to the log php file, it will be processed there
+        // Send the POST request to the class.log php file, it will be processed there
         xhr.open('POST', '../../inc/class.log.php');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {

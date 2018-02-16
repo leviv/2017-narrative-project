@@ -72,10 +72,12 @@ function footnote($number, $footnotes) {
 */
 function remove_footnotes($footnotes, $article) {
 	$i=1;
-	foreach ($footnotes as $footnote) {
-	    $article = str_replace(footnote($i,$footnotes), '', $article);
-	    $i++;
-	}
+    if (is_array($footnotes)) {
+        foreach ($footnotes as $footnote) {
+            $article = str_replace(footnote($i,$footnotes), '', $article);
+            $i++;
+        }
+    }
 	return $article;
 }
 

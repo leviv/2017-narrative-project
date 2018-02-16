@@ -10,7 +10,7 @@ $video_id = 'jMggcdGtxCg';
 $video_name = 'Reader Perspective: Marijuana - Jeff';
 
 $video2_id = 'uttHkCH3C5Y';
-$video2_name = 'Reader Perspective: Marijuana - Anne';
+$video2_name = 'Reader Perspective: Marijuana - Ann';
 
 $featured_img_caption = '';
 $article = '<p>In Wyoming, pot is illegal. Not so in neighboring Colorado, where recreational marijuana is available in a variety of different forms.</p>

@@ -9,8 +9,8 @@ $featured_img = '../../dist/img/guns2.jpg';
 $video_id = '7Iu1AfQPPkY';
 $video_name = 'Reader Perspective: Guns - Jeff';
 
-$video2_id = '2m4szVYBhvI';
-$video2_name = 'Reader Perspective: Guns - Anne';
+$video2_id = 'TcjGFJc4GHY';
+$video2_name = 'Reader Perspective: Guns - Ann';
 
 $featured_img_caption = '';
 $article = '<p>With more Americans now exercising a legal right to carry firearms, police find themselves having to make rapid judgments about whether an armed citizen is a threat. This dilemma isn\'t a new one. Gun rights groups started a push for more permissive laws in the 1990s, and most states now allow concealed carry, open carry or both.</p>

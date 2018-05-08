@@ -2,7 +2,7 @@
 $identifier = 'trust';
 $title = 'Immigration Agents Arrested Men Outside a Church. Officials Say It Was Just a Coincidence';
 $author = 'Riley Phipps';
-$pubdate = 'May. 8, 2018';
+$pubdate = 'May 8, 2018';
 $article_topic = 'immigration';
 
 $video_id = 'SxDUMVYRnMg';

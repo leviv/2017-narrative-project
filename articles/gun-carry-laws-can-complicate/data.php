@@ -2,10 +2,9 @@
 $identifier = 'trust';
 $title = 'Gun Carry Laws Can Complicate Police Interactions';
 $author = 'Riley Phipps';
-$pubdate = 'Jan. 25, 2018';
+$pubdate = 'May. 8, 2018';
 $article_topic = 'guns';
 
-$featured_img = '../../dist/img/guns2.jpg';
 $video_id = '7Iu1AfQPPkY';
 $video_name = 'Reader Perspective: Guns - Jeff';
 

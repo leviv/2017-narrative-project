@@ -20,10 +20,12 @@
  
             </div>
         </header>
-
+        
+        <?php if($featured_img !== null) { ?>
         <figure class="featured-image">
             <img src="<?php echo($featured_img) ?>" alt="">
         </figure>
+        <?php } ?>
         
         <?php echo $article; ?>
 

@@ -2,10 +2,9 @@
 $identifier = 'trust';
 $title = 'How Much Pot Is In That Brownie? Wyoming Moves To Toughen Edible Marijuana Laws';
 $author = 'Riley Phipps';
-$pubdate = 'Jan. 25, 2018';
+$pubdate = 'May. 8, 2018';
 $article_topic = 'marijuana';
 
-$featured_img = '../../dist/img/marijuana.jpg';
 $video_id = 'jMggcdGtxCg';
 $video_name = 'Reader Perspective: Marijuana - Jeff';
 

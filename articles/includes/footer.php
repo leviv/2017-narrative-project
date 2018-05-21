@@ -11,7 +11,6 @@
     include('google-analytics.php');
     include('generate-userID.php');
 // endif;?>
-<script type="text/javascript" src="https://www.googleapis.com/youtube/v3/videos?id=itemId&key=apiKey&fields=items(snippet(title))&part=snippet"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="../../dist/js/scripts.js"></script>
 <script type="text/javascript">

@@ -15,10 +15,16 @@
     var rand = Math.floor((Math.random() * 2));
     // Use that random number to determine the name and id of the
     // Respective videos 
-    var youtubeVideoID = vids[rand];
-    var youtubeVideoName = vids[rand + 2];
-    var youtubeVideoID2 = vids[(rand - 1) * -1];
-    var youtubeVideoName2 = vids[(rand - 1) * -1 + 2];
+
+    if($identifier != 'control') { 
+        var youtubeVideoID = vids[rand];
+        var youtubeVideoName = vids[rand + 2];
+        var youtubeVideoID2 = vids[(rand - 1) * -1];
+        var youtubeVideoName2 = vids[(rand - 1) * -1 + 2];
+    } else {
+        var youtubeVideoName = 'Control - ' + vids[5];
+        var youtubeVideoName = 'Control - ' + vids[5];
+    }
 
     // initiailize player events 
     function onYouTubeIframeAPIReady() {

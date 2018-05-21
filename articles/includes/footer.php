@@ -14,7 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="../../dist/js/scripts.js"></script>
 <script type="text/javascript">
-    var vids = ["<?php echo $video_id; ?>", "<?php echo $video2_id; ?>", "<?php echo $video_name; ?>", "<?php echo $video2_name; ?>"];
+    var vids = ["<?php echo $video_id; ?>", "<?php echo $video2_id; ?>", "<?php echo $video_name; ?>", "<?php echo $video2_name; ?>","<?php echo $identifier;?>", "<?php echo $article_topic ?>"];
 </script>
 <script type="text/javascript" src="../includes/main.js"></script>
 </body>

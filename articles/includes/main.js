@@ -16,7 +16,7 @@
     // Use that random number to determine the name and id of the
     // Respective videos 
 
-    if($identifier != 'control') { 
+    if(vids[4] != 'control') { 
         var youtubeVideoID = vids[rand];
         var youtubeVideoName = vids[rand + 2];
         var youtubeVideoID2 = vids[(rand - 1) * -1];

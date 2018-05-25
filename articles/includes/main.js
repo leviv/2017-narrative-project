@@ -23,7 +23,7 @@
         var youtubeVideoName2 = vids[(rand - 1) * -1 + 2];
     } else {
         var youtubeVideoName = 'Control - ' + vids[5];
-        var youtubeVideoName = 'Control - ' + vids[5];
+        var youtubeVideoName2 = 'Control - ' + vids[5];
     }
 
     // initiailize player events 
@@ -35,6 +35,7 @@
             height: '320',
             width: '100%',
             videoId: youtubeVideoID,
+            host: 'https://www.youtube.com',
             playerVars: {
                 'rel': 0
             },
@@ -50,6 +51,7 @@
             height: '320',
             width: '100%',
             videoId: youtubeVideoID2,
+            host: 'https://www.youtube.com',
             playerVars: {
                 'rel': 0
             },

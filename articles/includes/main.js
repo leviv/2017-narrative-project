@@ -128,6 +128,7 @@
         }
 
     }
+
     function onPlayerStateChange1(event) {
 
         videoTwoClicked = true;
@@ -190,8 +191,15 @@
         //log('Comment', 'Add Comment', 'Add Comment Error');
     }
 
-    // Have this function runs right before the user navigates away from the page
-    window.onbeforeunload = function(){
+
+    window.addEventListener("message", function(event) {
+        
+        
+        if (event.origin != "https://utexas.ca1.qualtrics.com")
+            return;
+        
+        console.log((event.origin + " " + event.data));
+        
         
         // Check to see if Player1 is still playing
         if (videoState1 == 'Played') {
@@ -235,7 +243,9 @@
         // log the csv friendly string to the csv file
         log(result);
 
-    };
+    });
+
+
 
     // Pass an array and convert it to a string that can be interpretted as a csv
     function convertArrayOfObjectsToCSV(args) {  
